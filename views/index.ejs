@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+    <header><%- include('./partials/header'); %></header>
+
+    <main class="container mt-4">
+      <div class="jumbotron">
+        <h1>This is great <%=locals.name %></h1>
+        <p>Welcome to templating using EJS</p>
+      </div>
+    </main>
+    <div class="text-center">
+      <img class="img-fluid" src="images/cat.jpg" /><br />
+      <a href="/download/cat.jpg" class="btn btn-primary mt-4">Download</a>
+    </div>
+    <footer class="fixed-bottom"><%- include('./partials/footer'); %></footer>
+  </body>
+</html>
