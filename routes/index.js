@@ -1,4 +1,7 @@
 const userRoutes = require('./users');
+const apiUserRoutes = require('./api/users');
+const apiPostRoutes = require('./api/posts');
+const apiCommentRoutes = require('./api/comments');
 const express = require('express');
 const router = express.Router();
 
@@ -33,5 +36,8 @@ router.get('/', (req, res) => {
 
 module.exports = {
   userRoutes,
+  apiUserRoutes,
+  apiPostRoutes,
+  apiCommentRoutes,
   indexRoutes: router,
 };

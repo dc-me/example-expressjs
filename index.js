@@ -14,6 +14,12 @@ app.use(morgan('tiny'));
 // routes set up
 app.use(routes.indexRoutes);
 app.use('/users', routes.userRoutes);
+app.use('/api/users', routes.apiUserRoutes);
+app.use('/api/posts', routes.apiPostRoutes);
+app.use('/api/comments', routes.apiCommentRoutes);
+app.use('/api', (err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
+});
 
 app.engine('dc', (filePath, options, callback) => {
   fs.readFile(filePath, (err, tpl) => {
