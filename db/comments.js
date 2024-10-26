@@ -19,4 +19,4 @@ const comments = [
   },
 ];
 
-module.exports = comments;
+export default comments;
