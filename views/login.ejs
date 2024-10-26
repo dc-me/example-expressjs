@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <%- include('./partials/head'); %>
     <style>
@@ -8,9 +8,11 @@
       }
     </style>
   </head>
-  <body>
+  <body class="h-100 d-flex align-items-center">
     <div class="container">
-      <form method="post">
+      <div>Please see api/users for a list of valid users to login</div>
+      <hr />
+      <form id="login" method="post">
         <div class="row mb-3">
           <label class="col-sm-4 col-form-label">Username</label>
           <div class="col-sm-8">
@@ -24,8 +26,53 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="invalid-feedback">
+          Please input your username and password
+        </div>
       </form>
     </div>
-    <footer class="fixed-bottom"><%- include('./partials/footer'); %></footer>
+    <footer class="fixed-bottom text-bg-light">
+      <%- include('./partials/footer'); %>
+    </footer>
+    <script>
+      // interact with login api
+      const loginForm = document.getElementById('login');
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const usernameEl = this.elements['username'];
+        const passwordEl = this.elements['password'];
+        const username = usernameEl.value.trim();
+        const password = passwordEl.value.trim();
+
+        if (username && password) {
+          // fetch api request
+          fetch('/api/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username,
+              password,
+            }),
+          })
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              } else {
+                throw 'Server error';
+              }
+            })
+            .then((data) => {
+              alert(`Welcome ${data.name}, your email is: ${data.email}`);
+            })
+            .catch((e) => {
+              alert('Login failed');
+            });
+        } else {
+          this.querySelector('.invalid-feedback').classList.add('d-block');
+        }
+      });
+    </script>
   </body>
 </html>
