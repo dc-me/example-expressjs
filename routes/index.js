@@ -1,8 +1,8 @@
-const userRoutes = require('./users');
-const apiUserRoutes = require('./api/users');
-const apiPostRoutes = require('./api/posts');
-const apiCommentRoutes = require('./api/comments');
-const express = require('express');
+import express from 'express';
+import userRoutes from './users.js';
+import apiUserRoutes from './api/users.js';
+import apiPostRoutes from './api/posts.js';
+import apiCommentRoutes from './api/comments.js';
 const router = express.Router();
 
 router.get('/dany', (req, res) => {
@@ -34,10 +34,13 @@ router.get('/', (req, res) => {
   res.render('index', req.query);
 });
 
-module.exports = {
-  userRoutes,
-  apiUserRoutes,
-  apiPostRoutes,
-  apiCommentRoutes,
-  indexRoutes: router,
-};
+export default function configure(app) {
+  app.use(router);
+  app.use('/users', userRoutes);
+  app.use('/api/users', apiUserRoutes);
+  app.use('/api/posts', apiPostRoutes);
+  app.use('/api/comments', apiCommentRoutes);
+  app.use('/api', (err, req, res, next) => {
+    res.status(err.status || 500).json({ error: err.message });
+  });
+}

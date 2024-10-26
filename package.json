@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A practice example of expressjs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "start": "node index.js",
@@ -11,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "mongodb": "^6.10.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

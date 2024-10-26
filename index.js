@@ -1,9 +1,10 @@
-const express = require('express');
-const fs = require('fs');
-const morgan = require('morgan');
-const routes = require('./routes');
+import 'dotenv/config';
+import express from 'express';
+import fs from 'fs';
+import morgan from 'morgan';
+import configureRoutes from './routes/index.js';
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -12,14 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./assets'));
 app.use(morgan('tiny'));
 // routes set up
-app.use(routes.indexRoutes);
-app.use('/users', routes.userRoutes);
-app.use('/api/users', routes.apiUserRoutes);
-app.use('/api/posts', routes.apiPostRoutes);
-app.use('/api/comments', routes.apiCommentRoutes);
-app.use('/api', (err, req, res, next) => {
-  res.status(err.status || 500).json({ error: err.message });
-});
+configureRoutes(app);
 
 app.engine('dc', (filePath, options, callback) => {
   fs.readFile(filePath, (err, tpl) => {

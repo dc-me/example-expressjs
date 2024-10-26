@@ -1,10 +1,9 @@
-const express = require('express');
+import express from 'express';
+import users from '../../db/users.js';
+import posts from '../../db/posts.js';
+import comments from '../../db/comments.js';
+import error from '../../utils/error.js';
 const router = express.Router();
-
-const users = require('../../data/users');
-const posts = require('../../data/posts');
-const comments = require('../../data/comments');
-const error = require('../../utils/error');
 const err404 = error(404, 'User does not exist');
 
 router
@@ -91,4 +90,4 @@ router.get('/:id/comments', (req, res, next) => {
   res.json(filteredComments);
 });
 
-module.exports = router;
+export default router;

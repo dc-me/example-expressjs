@@ -1,6 +1,6 @@
-const express = require('express');
-const error = require('../../utils/error');
-const comments = require('../../data/comments');
+import express from 'express';
+import error from '../../utils/error.js';
+import comments from '../../db/comments.js';
 const router = express.Router();
 const err404 = error(404, 'Comment does not exist');
 
@@ -74,4 +74,4 @@ router
     }
   });
 
-module.exports = router;
+export default router;

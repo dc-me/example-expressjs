@@ -1,7 +1,7 @@
-const express = require('express');
-const error = require('../../utils/error');
-const posts = require('../../data/posts');
-const comments = require('../../data/comments');
+import express from 'express';
+import error from '../../utils/error.js';
+import posts from '../../db/posts.js';
+import comments from '../../db/comments.js';
 const router = express.Router();
 const err404 = error(404, 'Post does not exist');
 
@@ -83,4 +83,4 @@ router.get('/:id/comments', (req, res, next) => {
   res.json(filteredComments);
 });
 
-module.exports = router;
+export default router;
