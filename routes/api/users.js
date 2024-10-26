@@ -90,4 +90,17 @@ router.get('/:id/comments', (req, res, next) => {
   res.json(filteredComments);
 });
 
+router.post('/login', (req, res, next) => {
+  const { body } = req;
+  const user = users.find(
+    (u) => u.username.toLocaleLowerCase() == body.username.toLocaleLowerCase()
+  );
+
+  if (user) {
+    res.json(user);
+  } else {
+    next(error(400, "User deos'nt exist!"));
+  }
+});
+
 export default router;
