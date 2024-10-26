@@ -6,16 +6,25 @@
   <body>
     <header><%- include('./partials/header'); %></header>
 
-    <main class="container mt-4">
+    <main class="container my-4">
       <div class="jumbotron">
-        <h1>This is great <%=locals.name %></h1>
-        <p>Welcome to templating using EJS</p>
+        <h1>Posts</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% posts.forEach(function(p){ %>
+          <div class="col">
+            <h6 class="text-center"><%=p.title %></h6>
+            <div><%=p.content %></div>
+          </div>
+          <% }) %>
+        </div>
       </div>
     </main>
     <div class="text-center">
       <img class="img-fluid" src="images/cat.jpg" /><br />
       <a href="/download/cat.jpg" class="btn btn-primary mt-4">Download</a>
     </div>
-    <footer class="fixed-bottom"><%- include('./partials/footer'); %></footer>
+    <footer class="fixed-bottom text-bg-light">
+      <%- include('./partials/footer'); %>
+    </footer>
   </body>
 </html>
