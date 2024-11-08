@@ -3,6 +3,10 @@ import userRoutes from './users.js';
 import apiUserRoutes from './api/users.js';
 import apiPostRoutes from './api/posts.js';
 import apiCommentRoutes from './api/comments.js';
+import apiProductRoutes from './api/products.js';
+import apiOrderRoutes from './api/orders.js';
+import apiGradeRoutes from './api/grades.js';
+import apiV2UserRoutes from './api/v2/users.js';
 import posts from '../db/posts.js';
 const router = express.Router();
 
@@ -41,8 +45,12 @@ export default function configure(app) {
   app.use(router);
   app.use('/users', userRoutes);
   app.use('/api/users', apiUserRoutes);
+  app.use('/api/v2/users', apiV2UserRoutes);
   app.use('/api/posts', apiPostRoutes);
   app.use('/api/comments', apiCommentRoutes);
+  app.use('/api/products', apiProductRoutes);
+  app.use('/api/orders', apiOrderRoutes);
+  // app.use('/api/grades', apiGradeRoutes);
   app.use('/api', (err, req, res, next) => {
     res.status(err.status || 500).json({ error: err.message });
   });
