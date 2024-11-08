@@ -2,10 +2,19 @@ import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
 import morgan from 'morgan';
+import mongoose from 'mongoose';
 import configureRoutes from './routes/index.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// mongoose database connect
+try {
+  await mongoose.connect(process.env.MONGOOSE_URI, {
+    autoIndex: false,
+  });
+} catch (err) {
+  console.error(err);
+}
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(express.json());
