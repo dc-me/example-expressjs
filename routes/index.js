@@ -50,7 +50,7 @@ export default function configure(app) {
   app.use('/api/comments', apiCommentRoutes);
   app.use('/api/products', apiProductRoutes);
   app.use('/api/orders', apiOrderRoutes);
-  // app.use('/api/grades', apiGradeRoutes);
+  app.use('/api/grades', apiGradeRoutes);
   app.use('/api', (err, req, res, next) => {
     res.status(err.status || 500).json({ error: err.message });
   });
