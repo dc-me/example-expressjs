@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import configureRoutes from './routes/index.js';
 const app = express();
@@ -19,6 +20,7 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static('./assets'));
 app.use(morgan('tiny'));
 // routes set up
