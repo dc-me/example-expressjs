@@ -3,6 +3,7 @@
  * uses mongoose
  */
 import express from 'express';
+import passport from 'passport';
 import User from '../../../models/User.js';
 import error from '../../../utils/error.js';
 const router = express.Router();
@@ -35,6 +36,15 @@ router
       next(error(400, err.message));
     }
   });
+
+router.post(
+  '/login',
+  passport.authenticate('local', { successRedirect: './me' })
+);
+
+router.get('/me', async (req, res) => {
+  res.send(req.user);
+});
 
 router
   .route('/:id')
