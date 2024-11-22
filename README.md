@@ -1,5 +1,13 @@
 # An example expressJS application
-This repo is for per scholas training, containing all the nodeJS with expressJS codes
+This repo is for per scholas training, containing all the NodeJS with express framework codes.
+
+**BUILT WITH**:
+- NodeJS
+- Express
+- MongoDB (Mongoose)
+- Passport
+- EJS
+
 
 # How to run
 npm install && npm run dev
@@ -20,6 +28,7 @@ npm install && npm run dev
 | HTTP Method | Endpoint | Description
 | ---- | ---- | ---- 
 | GET | /api/v2/users?page=1&size=10 | Get a list of users |
+| GET | /api/v2/users/me | Get **current** logged in user |
 | GET | /api/v2/users/:id | Get user by id
 | DELETE | /api/v2/users/:id | Delete user by id
 | PATCH | /api/v2/users/:id | Update user by id
