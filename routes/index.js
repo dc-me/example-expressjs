@@ -52,7 +52,19 @@ export default function configure(app) {
   app.use('/api/orders', apiOrderRoutes);
   app.use('/api/grades', apiGradeRoutes);
   app.use('/api', (err, req, res, next) => {
-    res.status(err.status || 500).json({ error: err.message });
+    let status = 500;
+    let message = 'Server error!';
+    switch (typeof err) {
+      case 'string':
+        message = err;
+        break;
+      case 'object':
+        status = err.status || status;
+        message = err.message || message;
+        break;
+    }
+
+    res.status(status).json({ message });
   });
   // custom 404 middleware
   app.use((req, res) => {
