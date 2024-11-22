@@ -13,8 +13,10 @@ This repo is for per scholas training, containing all the NodeJS with express fr
 npm install && npm run dev
 
 .env file:
-> PORT=3000
-> MONGOOSE_URI=your connection string
+```
+PORT=3000
+MONGOOSE_URI=your connection string
+```
 ### scripts
 - npm run dev
   > start development process
