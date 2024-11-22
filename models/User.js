@@ -42,6 +42,7 @@ export const userSchema = new Schema(
         },
         message: (props) => `${props.value} is not a valid email address`,
       },
+      index: true,
     },
   },
   {
@@ -63,6 +64,7 @@ export const userSchema = new Schema(
         },
       },
     },
+    statics: {},
   }
 );
 
