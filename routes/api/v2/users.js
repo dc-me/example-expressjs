@@ -30,7 +30,13 @@ router
     try {
       const user = await new User(req.body).save();
       if (user) {
-        res.json(user);
+        // auto login
+        if (req.query.autoLogin) {
+          req.logIn(user, (err) => {
+            if (err) throw err;
+            res.json(user);
+          });
+        }
       }
     } catch (err) {
       next(error(400, err.message));
